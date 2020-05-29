@@ -9,12 +9,9 @@ public class ImgurHandler {
     @CodableStorable(key: "saved_responses", defaultValue: [])
     private var savedResponses: [ImgurResponse]
 
-    let clientID: String = "1d3041a440a4c66"
-    private let queue = DispatchQueue(label: "handler_queue", qos: .userInitiated, attributes: .concurrent)
+    let clientID: String = ClientIDInjector.clientID
 
-    public init() {
-        
-    }
+    public init() {}
 
     public func uploadImage(at url: URL) throws -> ImgurResponse {
         let semaphore = RunLoopSemaphore()
