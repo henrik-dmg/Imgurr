@@ -25,17 +25,4 @@ struct Upload: ParsableCommand {
         print(urls)
     }
 
-    private func saveResponses(responses: [ImgurResponse], output: URL) throws {
-        let existingResponses = try fetchExistingResponses(at: output)
-        let allResponses = (existingResponses + responses).sorted { $0.data.date < $1.data.date }
-
-        let data = try JSONEncoder().encode(allResponses)
-        try data.hp_write(to: output)
-    }
-
-    private func fetchExistingResponses(at url: URL) throws -> [ImgurResponse] {
-        let data = try Data(contentsOf: url)
-        return try JSONDecoder().decode([ImgurResponse].self, from: data)
-    }
-
 }

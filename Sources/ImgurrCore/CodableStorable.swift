@@ -14,7 +14,6 @@ import Foundation
 
     public var wrappedValue: T {
         get {
-            print("accessing data")
             // Read value from UserDefaults
             guard let data = defaults.object(forKey: key) as? Data else {
                 // Return defaultValue when no data in UserDefaults

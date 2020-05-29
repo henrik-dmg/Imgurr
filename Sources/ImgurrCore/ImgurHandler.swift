@@ -10,14 +10,14 @@ public class ImgurHandler {
     private var savedResponses: [ImgurResponse]
 
     let clientID: String = "1d3041a440a4c66"
+    private let queue = DispatchQueue(label: "handler_queue", qos: .userInitiated, attributes: .concurrent)
 
     public init() {
         
     }
 
     public func uploadImage(at url: URL) throws -> ImgurResponse {
-        let group = DispatchGroup()
-        group.enter()
+        let semaphore = RunLoopSemaphore()
 
         var imgurReponse: ImgurResponse?
         var error: Error?
@@ -27,8 +27,6 @@ public class ImgurHandler {
             requestMethod: .post,
             authentication: .raw(string: "Client-ID \(clientID)"))
 
-        print("posting request")
-
         Network.shared.uploadTask(request, fileURL: url) { result in
             switch result {
             case .success(let response):
@@ -37,11 +35,10 @@ public class ImgurHandler {
                 error = networkingError
             }
 
-            print("handling response")
-            group.leave()
+            semaphore.signal()
         }
 
-        group.wait()
+        semaphore.wait()
 
         guard error == nil else {
             throw error!
@@ -57,23 +54,26 @@ public class ImgurHandler {
     }
 
     public func deleteImage(deleteHash: String) throws {
-        let group = DispatchGroup()
-        group.enter()
+        let semaphore = RunLoopSemaphore()
 
         var error: Error?
 
-        let request = DeleteRequest(urlString: "https://api.imgur.com/3/image/\(deleteHash)")
+        let request = DeleteRequest(
+            urlString: "https://api.imgur.com/3/image/\(deleteHash)",
+            authentication: .raw(string: "Client-ID \(clientID)"))
 
         Network.shared.dataTask(request) { result in
             switch result {
-            case .success(let data):
-                print(data)
+            case .success:
+                print("Successfully deleted image".addingTerminalColor(.green))
             case .failure(let networkingError):
                 error = networkingError
             }
+
+            semaphore.signal()
         }
 
-        group.wait()
+        semaphore.wait()
 
         if let error = error {
             throw error
@@ -89,11 +89,15 @@ public class ImgurHandler {
             throw NSError(description: "Unable to find a delete hash for this image URL")
         }
 
+        print(response.data.deleteHash)
+
         try deleteImage(deleteHash: response.data.deleteHash)
     }
 
     public func printSavedData() {
-        print(savedResponses)
+        savedResponses.forEach {
+            print($0.makeTerminalRepresenation())
+        }
     }
 
 }
