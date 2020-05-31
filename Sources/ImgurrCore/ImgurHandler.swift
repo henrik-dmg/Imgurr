@@ -92,9 +92,16 @@ public class ImgurHandler {
     }
 
     public func printSavedData() {
-        savedResponses.forEach {
-            print($0.makeTerminalRepresenation())
+        guard !savedResponses.isEmpty else {
+            print("No existing images uploaded through Imgurr")
+            return
         }
+
+        let responses = savedResponses.map {
+            $0.makeTerminalRepresenation()
+        }
+
+        print(responses.joined(separator: "\n"))
     }
 
 }
