@@ -9,9 +9,14 @@ public class ImgurHandler {
     @CodableStorable(key: "saved_responses", defaultValue: [])
     private var savedResponses: [ImgurResponse]
 
-    let clientID: String = ClientIDInjector.clientID
+    let clientID: String
 
-    public init() {}
+    public init() throws {
+		guard let clientID = UserDefaults.standard.string(forKey: "clientID") else {
+			throw NSError(description: "Client ID was not set. Please set it using \"imgurr set-client {clientID}\"")
+		}
+		self.clientID = clientID
+	}
 
     public func uploadImage(at url: URL) throws -> ImgurResponse {
         let semaphore = RunLoopSemaphore()
@@ -101,7 +106,7 @@ public class ImgurHandler {
             $0.makeTerminalRepresenation()
         }
 
-        print(responses.joined(separator: "\n"))
+        print(responses.joined(separator: "\n\n"))
     }
 
 }

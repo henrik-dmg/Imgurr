@@ -5,7 +5,7 @@ import ImgurrCore
 struct Info: ParsableCommand {
 
     func run() throws {
-        let handler = ImgurHandler()
+        let handler = try ImgurHandler()
         handler.printSavedData()
     }
 

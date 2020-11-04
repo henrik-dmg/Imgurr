@@ -13,7 +13,7 @@ struct Upload: ParsableCommand {
     var images: [URL]
 
     func run() throws {
-        let handler = ImgurHandler()
+        let handler = try ImgurHandler()
 
         let newResponses = try images.map {
             try handler.uploadImage(at: $0)

@@ -36,8 +36,9 @@ struct MainCommand: ParsableCommand {
         commandName: "imgurr",
         abstract: "A utility to upload to and delete from Imgur",
         version: "0.0.1",
-        subcommands: [Upload.self, Delete.self, Info.self],
-        helpNames: .shortAndLong)
+		subcommands: [Upload.self, Delete.self, Info.self, SetClient.self],
+        helpNames: .shortAndLong
+	)
 
 }
 

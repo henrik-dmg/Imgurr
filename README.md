@@ -1,9 +1,18 @@
 # Imgurr - a simple CLI tool to upload and delete images from Imgur
 ## Installation
-- First, get a client ID from the Imgur [developer portal](https://api.imgur.com/oauth2/addclient)
-- Call the `install.sh` script with the client ID as a parameter (e.g. `sh install.sh clientID`). This will install `imgurr` into `/usr/local/bin`
+### Manual
+- Clone the repo with `git clone https://github.com/henrik-dmg/Imgurr.git`
+- Call the `install.sh` script (e.g. `sh Imgurr/install.sh`). This will install `imgurr` into `/usr/local/bin`
+
+### [Mint](https://github.com/yonaskolb/mint)
+```
+$ mint install henrik-dmg/Imgurr
+```
 
 ## Usage
+### Set Client ID
+First, get a client ID from the Imgur [developer portal](https://api.imgur.com/oauth2/addclient). Then call `imgurr set-cliend "{yourClientID}"`
+
 ### Upload Images
 To upload images, simply call `imgurr upload [<images> ...]`. The output will be each Imgur URL on a new line.
 

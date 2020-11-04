@@ -23,7 +23,7 @@ public struct ImgurResponse: Codable {
     public let data: ResponseData
 
     public func makeTerminalRepresenation() -> String {
-        var string = "Imgur Image \(data.link.absoluteString)".addingTerminalTextDecoration(.underline)
+        var string = "Image URL: \(data.link.absoluteString)".addingTerminalTextDecoration(.underline)
         string += "\nID: \(data.id)"
         string += "\nType: \(data.type)"
         string += "\nDelete hash: \(data.deleteHash)"
@@ -42,6 +42,7 @@ extension Date {
         formatter.calendar = Calendar.autoupdatingCurrent
         formatter.timeZone = TimeZone.autoupdatingCurrent
 
+		formatter.timeStyle = .short
         formatter.dateStyle = .short
         return formatter.string(from: self)
     }

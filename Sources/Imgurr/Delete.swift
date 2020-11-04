@@ -14,7 +14,7 @@ struct Delete: ParsableCommand {
     var urls: [String]
 
     func run() throws {
-        let uploader = ImgurHandler()
+        let uploader = try ImgurHandler()
 
         let mappedURLs = urls.compactMap { URL(string: $0) }
 
