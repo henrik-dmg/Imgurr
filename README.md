@@ -11,7 +11,7 @@ $ mint install henrik-dmg/Imgurr
 
 ## Usage
 ### Set Client ID
-First, get a client ID from the Imgur [developer portal](https://api.imgur.com/oauth2/addclient). Then call `imgurr set-cliend "{yourClientID}"`
+First, get a client ID from the Imgur [developer portal](https://api.imgur.com/oauth2/addclient). Then call `imgurr set-client "{yourClientID}"`
 
 ### Upload Images
 To upload images, simply call `imgurr upload [<images> ...]`. The output will be each Imgur URL on a new line.
