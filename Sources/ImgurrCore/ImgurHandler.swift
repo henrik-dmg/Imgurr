@@ -112,6 +112,9 @@ final class DeleteRequest: NetworkRequest {
 
     public let requestMethod: NetworkRequestMethod
     public let authentication: NetworkRequestAuthentication?
+	let finishingQueue: DispatchQueue = .main
+	let urlSession: URLSession = .shared
+
 
     private let urlString: String
 

@@ -13,7 +13,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/henrik-dmg/CLIFoundation", from: "0.0.1"),
-        .package(path: "../HPNetwork"),
+		.package(url: "https://github.com/henrik-dmg/HPNetwork", from: "0.6.0"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
     ],
     targets: [

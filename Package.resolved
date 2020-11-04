@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/henrik-dmg/CLIFoundation",
         "state": {
           "branch": null,
-          "revision": "44db85e2cf04e78265956b3326a4346b87d36d07",
-          "version": "0.6.3"
+          "revision": "a3304a3b4b79bbef61b1937cb4cace2622cc2b37",
+          "version": "0.6.4"
+        }
+      },
+      {
+        "package": "HPNetwork",
+        "repositoryURL": "https://github.com/henrik-dmg/HPNetwork",
+        "state": {
+          "branch": null,
+          "revision": "b84854884c6a7f0df5dd5689e023d6a0c2cf7c29",
+          "version": "0.6.1"
         }
       },
       {
@@ -15,8 +24,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser",
         "state": {
           "branch": null,
-          "revision": "223d62adc52d51669ae2ee19bdb8b7d9fd6fcd9c",
-          "version": "0.0.6"
+          "revision": "92646c0cdbaca076c8d3d0207891785b3379cbff",
+          "version": "0.3.1"
         }
       }
     ]
